@@ -12,3 +12,9 @@ def user_login(request):
 
 def user_registr(request):
     return render(request, "users/registr.html")
+
+def post_form(request):
+    return render(request, "posts/post_form.html")
+
+def favorite_list(request):
+    return render(request, "posts/favorite_list.html")
