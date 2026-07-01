@@ -1,7 +1,3 @@
-from django.urls import path, include
+from django.urls import path
 
-import views
-
-urlpatterrs = [
-    path("", views.past_list)
-]
+urlpatterns = []
