@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>
+    <h1>Удалить пост</h1>
+
+    <p>Вы действительно хотите удалить пост?</p>
+
+    <from method="POST">
+        {% csrf_tonken %}
+
+        <button type="submit">Удалить</button>
+
+        <a href="{{ object.get_absolute_url }}">Отмена</a>
+
+    </from>
+</div>
+
+{% endblock %}

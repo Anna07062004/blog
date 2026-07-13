@@ -1,3 +1,16 @@
-from django.urls import path
+from django.urls import path, include
+import posts.views as views
 
-urlpatterns = []
+urlpatterns = [
+    path('', views.PostListView.as_view(), name='post_list'),
+    path('posts/favorites/', views.FavoritePostListView.as_view(), name='favorite_posts'),
+    path('posts/create', views.PostCreateView.as_view(), name='post_create'),
+    path('posts/<int:pk>/', views.PostDetailView.as_view(), name='post_detail'),
+    path('posts/<int:pk>/delete/', views.PostDeleteView.as_view(), name='post_delete'),
+    path('posts/<int:pk>/favorite/', views.toggle_favorite, name='toggle_favorite'),
+
+
+
+
+
+]

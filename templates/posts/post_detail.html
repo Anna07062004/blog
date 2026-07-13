@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <div class="text-base uppercase font-medium text-blue-500">Публикация</div>
+        <div class="mt-4">
+            <h1 class="text-2xl font-bold">{{ posts.title }}</h1>
+
+            <div class="mt-1">
+                Автор: <span class="font-semibold">{{ post.auther.username }}</span> {{ post.created_at }}
+            </div>
+
+            <p class="text-base text-zinc-500 mt-2">{{ post.text }}</p>
+
+        </div>
+
+        <div>
+            {% if user.is_authrnticated %}
+
+            <from method="POST" action="{% url 'toggle_favorite' post.pk %}">
+                {% csrf_token %}
+
+                {% if user in post.favorite.all %}
+                    <button type="submit">Удалить из избраного</button>
+
+                {% else %}
+                    <button type="submit">Добавить в избранное</button>
+                {% endif %}
+            </from>
+
+                {% if user == post.author %}
+                    <div>
+                        <a href="{% url 'post_update' post.pk %}">Редоктировать</a>
+                        <a href="{% url 'post_update' post.pk %}">Удалить</a>
+                    </div>
+                {% endif %}
+
+            
+        </div>
+
+        <div class="mt-4">
+            <h2 class="text-lg font-semibold">Комментарии</h2>
+            <div class="text-sm bg-whity rounded-lg py-2 px-4 my-2 bg-white">
+                <a href="" class="text-blue-500 hover:underline">Войдите</a>, что бы оставлять комментарии
+            </div>
+
+            <div class="mt-4 flex flex-col gap-3">
+                {% for commit in post.comments.all %}
+                    <div>
+                        <p class="text-sm text-zinc-800">
+                            <span class="font-semibold"></span>
+                        </p>
+                    </div>
+
+            </div>
+            {% endfor %}
+        </div>
+
+{% endblock %}
